@@ -34,15 +34,18 @@ public class TupleSpace {
 	 * @return
 	 */
 	public Tuple in(HashMap<String,String> template){
-		
-		for(Tuple t : this.allTuples){
-			if(t.equals(template)){
-				this.allTuples.remove(t);
-				return t;
-			}
-		}
-        this.displayTupleSpace();
-		return null;
+		while(true){
+            synchronized (this){
+                for(Tuple t : this.allTuples){
+                    if(t.isTemplate(template)){
+                        this.allTuples.remove(t);
+                        return t;
+                    }
+                }
+            }
+        }
+
+        // bloquant ?
 	}
 	
 	/**

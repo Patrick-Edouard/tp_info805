@@ -37,6 +37,16 @@ public class Tuple {
 		}
 		return false;
 	}
+
+    public boolean isTemplate(HashMap<String, String> tmpTemplate){
+        boolean ret = true;
+        for(String s : tmpTemplate.values()){
+            if(!template.containsValue(s)){
+                ret = false;
+            }
+        }
+        return ret;
+    }
 	
 	@Override
 	public String toString() {
