@@ -10,7 +10,7 @@ public class TupleSpace {
 	private ArrayList<Tuple> allTuples;
 	
 	private TupleSpace(){
-		
+		this.allTuples = new ArrayList<Tuple>();
 	}
 	
 	public static TupleSpace getInstance(){
@@ -41,6 +41,7 @@ public class TupleSpace {
 				return t;
 			}
 		}
+        this.displayTupleSpace();
 		return null;
 	}
 	
@@ -57,20 +58,30 @@ public class TupleSpace {
 				return t;
 			}
 		}
+        this.displayTupleSpace();
 		return null;
 	}
 	
 	/**
-	 * Retourne si un tuple va bien
-	 * Sinon retourne null
-	 * @param template
+	 * Ajoute un tuple à l'espace de tuples
+	 * @param t
 	 * @return
 	 */
-	public void out(HashMap<String,String> template){
+	public void out(Tuple t){
 		
-		this.allTuples.add(new Tuple(template));
+		this.allTuples.add(t);
+        this.displayTupleSpace();
 		
 	}
+
+    public void displayTupleSpace(){
+        System.out.println("\n\nTransaction effectuée sur l'espace de tuple" +
+                "\nNouveau contenue :");
+
+        for(Tuple t : this.allTuples){
+            System.out.print(t);
+        }
+    }
 	
 	public static void main (String [] args){
 		Tuple ts1 = new Tuple();
