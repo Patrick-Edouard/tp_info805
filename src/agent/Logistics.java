@@ -24,6 +24,7 @@ public class Logistics implements ActionListener, Runnable{
         System.out.println("En attente du customer");
         HashMap template = new HashMap();
         template.put("requierements", "String");
+        //type des données ?
         template.put("cost", "String");
         template.put("time", "String");
         template.put("quantity", "String");

@@ -3,6 +3,7 @@ package agent;
 import tuple.Tuple;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 /**
@@ -30,6 +31,7 @@ public class DialogueSupplier extends JDialog{
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setTitle("Supplier");
         this.setLayout(new GridLayout(2,2));
+        // set layout null => tu places les composants à la main avec des setBounds(x,y,w,h); sur chaque composant
         this.setBounds(1150,50,500,500);
 
     }
@@ -42,12 +44,17 @@ public class DialogueSupplier extends JDialog{
 
     public void requestReceived(Tuple tuple) {
         textRequierement = new JTextArea(tuple.getTemplate().get("requierements"));
+        //ajoute un bord au composant
+        textRequierement.setBorder(new LineBorder(Color.black));
         this.add(textRequierement);
         textCost = new JTextArea(tuple.getTemplate().get("cost"));
+        textCost.setBorder(new LineBorder(Color.black));
         this.add(textCost);
         textTime = new JTextArea(tuple.getTemplate().get("time"));
+        textTime.setBorder(new LineBorder(Color.black));
         this.add(textTime);
         textQuantity = new JTextArea(tuple.getTemplate().get("quantity"));
+        textQuantity.setBorder(new LineBorder(Color.black));
         this.add(textQuantity);
         this.revalidate();
     }
