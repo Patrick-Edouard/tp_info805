@@ -40,14 +40,16 @@ public class Tuple {
 
     public boolean isTemplate(HashMap<String, String> tmpTemplate){
         boolean ret = true;
-        for(String s : tmpTemplate.values()){
-            if(!template.containsValue(s)){
+        for(String s : tmpTemplate.keySet()){
+
+            if(!template.containsKey(s)){
                 ret = false;
+                break;
             }
         }
         return ret;
     }
-	
+
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();

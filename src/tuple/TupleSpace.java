@@ -29,7 +29,7 @@ public class TupleSpace {
 	
 	/**
 	 * Retourne si un tuple va bien & le retire
-	 * Sinon retourne null
+	 * Appel bloquant
 	 * @param template
 	 * @return
 	 */
@@ -71,15 +71,16 @@ public class TupleSpace {
 	 * @return
 	 */
 	public void out(Tuple t){
-		
-		this.allTuples.add(t);
-        this.displayTupleSpace();
-		
+        synchronized (this){
+            this.allTuples.add(t);
+            this.displayTupleSpace();
+        }
 	}
 
     public void displayTupleSpace(){
-        System.out.println("\n\nTransaction effectuée sur l'espace de tuple" +
-                "\nNouveau contenue :");
+        System.out.println("\n[TuppleSpace Display]" +
+                "\n" +
+                "\nContenue :");
 
         for(Tuple t : this.allTuples){
             System.out.print(t);

@@ -22,10 +22,10 @@ public class Customer implements ActionListener{
 	
 	private void sendToLogistics(){
 		HashMap<String, String> data = new HashMap<String, String>();
-		data.put(this.requierements, "requierements");
-		data.put(this.cost, "cost");
-		data.put(this.time, "time");
-		data.put(this.quantity, "quantity");
+		data.put("requierements",this.requierements );
+		data.put("cost",this.cost);
+		data.put("time",this.time);
+		data.put("quantity",this.quantity);
 		this.tupleSpace.out(new Tuple(data));
 	}
 
