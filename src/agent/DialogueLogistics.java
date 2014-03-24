@@ -3,6 +3,8 @@ package agent;
 import tuple.Tuple;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 /**
@@ -12,7 +14,8 @@ public class DialogueLogistics extends JDialog{
 
     private Logistics logistics;
     public JButton buttonSend;
-    private JLabel customerRequest;
+    public JLabel request;
+    private JTextArea customerRequest;
 
     public DialogueLogistics(Logistics logistics){
         super();
@@ -30,15 +33,22 @@ public class DialogueLogistics extends JDialog{
     private void initWindow(){
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setTitle("Logistic");
-        this.setLayout(new GridLayout(2,2));
-        this.setBounds(600,50,500,450);
+        this.setLayout(null);
+        this.setBounds(600, 50, 500, 500);
     }
 
     private void initComponent(){
-        buttonSend = new JButton("Send to suppliers");
-        buttonSend.addActionListener(logistics);
-        this.add(buttonSend);
-        customerRequest = new JLabel("requete client : ");
+        customerRequest = new JTextArea("No query yet...");
+        request = new JLabel("Customer query : ");
+        //Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
+        //this.customerRequest.setBorder(border);
+        this.customerRequest.setBounds(120, 50, 300, 300);
+        this.request.setBounds(5, 50, 100, 50);
         this.add(customerRequest);
+        this.add(request);
+        buttonSend = new JButton("Send to Suppliers");
+        buttonSend.addActionListener(logistics);
+        this.buttonSend.setBounds(180, 400, 150, 25);
+        this.add(buttonSend);
     }
 }

@@ -12,9 +12,13 @@ public class DialogueCustomer extends JDialog{
 
     private Customer customer;
     JButton buttonSend;
+    JLabel requirement;
     JTextArea textRequierement;
+    JLabel cost;
     JTextArea textCost;
+    JLabel time;
     JTextArea textTime;
+    JLabel quantity;
     JTextArea textQuantity;
 
     public DialogueCustomer(Customer customer){
@@ -28,22 +32,42 @@ public class DialogueCustomer extends JDialog{
     private void initWindow(){
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setTitle("Customer");
-        this.setLayout(new GridLayout(2,2));
+        this.setLayout(null);     
         this.setBounds(50,50,500,500);
-
     }
 
     private void initComponent(){
-        textRequierement = new JTextArea("Besoin de tant de truc nanana");
+        textRequierement = new JTextArea("We need badminton racket large-headed.");
+        requirement = new JLabel("Requirements : ");
+        this.textRequierement.setBounds(100, 50, 300, 50);
+        this.requirement.setBounds(5, 50, 100, 50);
         this.add(textRequierement);
-        textCost = new JTextArea("Cout : 40e/u");
+        this.add(requirement);
+        
+        textCost = new JTextArea("39,90€/unit");
+        cost = new JLabel("Cost : ");
+        this.textCost.setBounds(100, 105, 300, 50);
+        this.cost.setBounds(5, 105, 100, 50);
         this.add(textCost);
-        textTime = new JTextArea("Avant le 25 mars");
+        this.add(cost);
+        
+        textTime = new JTextArea("Before April, 2014");
+        time = new JLabel("Time : ");
+        this.textTime.setBounds(100, 160, 300, 50);
+        this.time.setBounds(5, 160, 100, 50);
         this.add(textTime);
-        textQuantity = new JTextArea("Un bon gros paquet");
+        this.add(time);
+        
+        textQuantity = new JTextArea("One thousand");
+        quantity = new JLabel("Quantity : ");
+        this.textQuantity.setBounds(100, 215, 300, 50);
+        this.quantity.setBounds(5, 215, 100, 50);
         this.add(textQuantity);
-        buttonSend = new JButton("Send to logistic");
+        this.add(quantity);
+        
+        buttonSend = new JButton("Send to Logistic");
         buttonSend.addActionListener(customer);
+        this.buttonSend.setBounds(100, 300, 300, 25);
         this.add(buttonSend);
     }
 

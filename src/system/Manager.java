@@ -13,7 +13,7 @@ public class Manager {
         new Customer();
 
          // à mettre dans un thread à cause de l'attente active
-        //Argument à supplier pour préremplir en fonctions de ses capacitées
+         // Argument à supplier pour préremplir en fonctions de ses capacitées
         Thread tSupplier = new Thread(new Supplier());
         tSupplier.start();
 

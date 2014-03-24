@@ -39,7 +39,6 @@ public class Logistics implements ActionListener, Runnable{
     private void broadcastCustomerRequest(){
         //Adapte le tuple
         customerRequest.addField("idrequete",""+NB_REQUEST);
-
         this.tupleSpace.out(customerRequest);
     }
 

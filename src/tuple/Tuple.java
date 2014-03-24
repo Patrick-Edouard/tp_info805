@@ -53,8 +53,10 @@ public class Tuple {
 	@Override
 	public String toString() {
 		StringBuilder result = new StringBuilder();
-		result.append(this.template.entrySet());
-		result.append("\n");
+		for(String mapKey : this.template.keySet()){
+			result.append(this.template.get(mapKey));
+			result.append("\n");
+		}
 		return result.toString();
 	}
 	
