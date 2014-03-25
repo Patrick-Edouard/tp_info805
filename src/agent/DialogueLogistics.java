@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by patrick-edouard on 3/18/14.
@@ -16,6 +17,7 @@ public class DialogueLogistics extends JDialog{
     public JButton buttonSend;
     public JLabel request;
     private JTextArea customerRequest;
+    private JList<String> listReponse;
 
     public DialogueLogistics(Logistics logistics){
         super();
@@ -43,6 +45,8 @@ public class DialogueLogistics extends JDialog{
         //Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
         //this.customerRequest.setBorder(border);
         this.customerRequest.setBounds(120, 50, 300, 300);
+        this.customerRequest.setBackground(Color.WHITE);
+        this.customerRequest.setEditable(false);
         this.request.setBounds(5, 50, 100, 50);
         this.add(customerRequest);
         this.add(request);
@@ -50,5 +54,22 @@ public class DialogueLogistics extends JDialog{
         buttonSend.addActionListener(logistics);
         this.buttonSend.setBounds(180, 400, 150, 25);
         this.add(buttonSend);
+    }
+
+    void displayResponse(ArrayList<Tuple> reponse){
+
+        String[] responseArray = new String[reponse.size()];
+
+        for(int i = 0; i < reponse.size(); ++i){
+            responseArray[i]= reponse.get(i).toString();
+        }
+
+        listReponse = new JList<String>(responseArray);
+
+        listReponse.setBounds(50,50,550,550);
+
+        this.add(listReponse);
+
+        this.revalidate();
     }
 }

@@ -47,23 +47,41 @@ public class TupleSpace {
 
         // bloquant ?
 	}
-	
-	/**
-	 * Retourne si un tuple va bien
-	 * Sinon retourne null
-	 * @param template
-	 * @return
-	 */
-	public Tuple rd(HashMap<String,String> template){
-		
-		for(Tuple t : this.allTuples){
-			if(t.equals(template)){
-				return t;
-			}
-		}
-        this.displayTupleSpace();
-		return null;
-	}
+
+    /**
+     * Retourne si un tuple va bien
+     * Sinon retourne null
+     * @param template
+     * @return
+     */
+    public Tuple rd(HashMap<String,String> template){
+        synchronized (this){
+            for(Tuple t : this.allTuples){
+                if(t.isTemplate(template)){
+                    return t;
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Retourne si un tuple va bien
+     * Sinon retourne null
+     * @param template
+     * @return
+     */
+    public ArrayList<Tuple> rdAll(HashMap<String,String> template){
+        ArrayList<Tuple> matches = new ArrayList<Tuple>();
+        synchronized (this){
+            for(Tuple t : this.allTuples){
+                if(t.isTemplate(template)){
+                    matches.add(t);
+                }
+            }
+            return matches;
+        }
+    }
 	
 	/**
 	 * Ajoute un tuple à l'espace de tuples

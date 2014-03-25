@@ -7,7 +7,7 @@ import java.util.HashMap;
 import tuple.Tuple;
 import tuple.TupleSpace;
 
-public class Customer implements ActionListener{
+public class Customer implements Runnable, ActionListener{
 
 	private String requierements = "";
 	private String cost = "";
@@ -17,7 +17,7 @@ public class Customer implements ActionListener{
     private DialogueCustomer view;
 	
 	public Customer(){
-        this.view = new DialogueCustomer(this);
+
 	}
 	
 	private void sendToLogistics(){
@@ -42,5 +42,10 @@ public class Customer implements ActionListener{
             this.retriewInfoFromView();
             this.sendToLogistics();
         }
+    }
+
+    @Override
+    public void run() {
+        this.view = new DialogueCustomer(this);
     }
 }

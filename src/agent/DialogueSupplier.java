@@ -43,50 +43,55 @@ public class DialogueSupplier extends JDialog{
         requirement = new JLabel("Requirements : ");
         this.requirement.setBounds(5, 50, 100, 50);
         this.add(requirement);
+
+        this.textRequierement = new JTextArea();
+        this.textRequierement.setBounds(100, 50, 300, 50);
+        this.add(textRequierement);
         
  
         cost = new JLabel("Cost : ");
         this.cost.setBounds(5, 105, 100, 50);
         this.add(cost);
-        
+
+        textCost = new JTextArea();
+        this.textCost.setBounds(100, 105, 300, 50);
+        this.add(textCost);
 
         time = new JLabel("Time : ");
         this.time.setBounds(5, 160, 100, 50);
         this.add(time);
-        
+
+        textTime = new JTextArea();
+        this.textTime.setBounds(100, 160, 300, 50);
+        this.add(textTime);
 
         quantity = new JLabel("Quantity : ");
         this.quantity.setBounds(5, 215, 100, 50);
         this.add(quantity);
-    	
+
+        textQuantity = new JTextArea("");
+        this.textQuantity.setBounds(100, 215, 300, 50);
+        this.add(textQuantity);
     	
         buttonSend = new JButton("Send offer");
+        this.buttonSend.setBounds(100,300,300,25);
         buttonSend.addActionListener(supplier);
         this.add(buttonSend);
         
-        this.revalidate();
+        //this.revalidate();
     }
 
     public void requestReceived(Tuple tuple) {
     	
-        textRequierement = new JTextArea(tuple.getTemplate().get("requierements"));
-        this.textRequierement.setBounds(100, 50, 300, 50);
-        this.add(textRequierement);
-        
-        textCost = new JTextArea(tuple.getTemplate().get("cost"));
-        this.textCost.setBounds(100, 105, 300, 50);
-        this.add(textCost);
-        
-        textTime = new JTextArea(tuple.getTemplate().get("time"));
-        this.textTime.setBounds(100, 160, 300, 50);
-        this.add(textTime);
+        textRequierement.setText(tuple.getTemplate().get("requierements"));
 
-        
-        textQuantity = new JTextArea(tuple.getTemplate().get("quantity"));
-        this.textQuantity.setBounds(100, 215, 300, 50);
-        this.add(textQuantity);
+        textCost.setText(tuple.getTemplate().get("cost"));
 
-        this.revalidate();
+        textTime.setText(tuple.getTemplate().get("time"));
+
+        textQuantity.setText(tuple.getTemplate().get("quantity"));
+
+        //this.revalidate();
     }
 
     public String getRequierement(){

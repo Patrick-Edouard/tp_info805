@@ -10,7 +10,8 @@ import agent.Supplier;
 public class Manager {
 
     public static void main(String[] args){
-        new Customer();
+        Thread tCustomer = new Thread(new Customer());
+        tCustomer.start();
 
          // à mettre dans un thread à cause de l'attente active
          // Argument à supplier pour préremplir en fonctions de ses capacitées

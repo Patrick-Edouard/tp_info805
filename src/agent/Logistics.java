@@ -36,10 +36,24 @@ public class Logistics implements ActionListener, Runnable{
         System.out.print("Demande de client lue :\n"+customerRequest);
     }
 
+    private void waitForSupplier(){
+
+        Thread tWaiter = new Thread(new LogisticWaiter(this));
+        tWaiter.start();
+
+    }
+
+    void waiterResponse(ArrayList<Tuple> tuples){
+        this.view.displayResponse(tuples);
+    }
+
     private void broadcastCustomerRequest(){
         //Adapte le tuple
         customerRequest.addField("idrequete",""+NB_REQUEST);
         this.tupleSpace.out(customerRequest);
+
+        //Après broadcast attend une réponse
+        this.waitForSupplier();
     }
 
     @Override
