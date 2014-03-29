@@ -8,10 +8,11 @@ import java.util.HashMap;
 import tuple.Tuple;
 import tuple.TupleSpace;
 
-public class Logistics implements ActionListener, Runnable{
+public class Logistics extends Agent implements ActionListener, Runnable{
 	
 	private TupleSpace tupleSpace = TupleSpace.getInstance();
 	private ArrayList<Supplier> suppliers;
+    private ArrayList<Tuple> reponses;
     private DialogueLogistics view;
     private Tuple customerRequest= new Tuple();
     private static int NB_REQUEST=0;
@@ -38,12 +39,21 @@ public class Logistics implements ActionListener, Runnable{
 
     private void waitForSupplier(){
 
-        Thread tWaiter = new Thread(new LogisticWaiter(this));
+        HashMap template = new HashMap();
+        template.put("idsupplier","String");
+        template.put("requierements", "String");
+        template.put("cost", "String");
+        template.put("time", "String");
+        template.put("quantity", "String");
+
+
+        Thread tWaiter = new Thread(new TupleWaiter(this, template));
         tWaiter.start();
 
     }
 
-    void waiterResponse(ArrayList<Tuple> tuples){
+    void tupleFound(ArrayList<Tuple> tuples){
+        reponses = tuples;
         this.view.displayResponse(tuples);
     }
 
@@ -56,10 +66,18 @@ public class Logistics implements ActionListener, Runnable{
         this.waitForSupplier();
     }
 
+    private void sendResponsesToCustomer(){
+        for(Tuple tuple  : reponses){
+            tupleSpace.out(tuple);
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(view.buttonSend)){
             this.broadcastCustomerRequest();
+        }else if(e.getSource().equals(view.buttonSendResponse)){
+            this.sendResponsesToCustomer();
         }
     }
 

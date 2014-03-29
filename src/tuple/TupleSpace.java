@@ -71,7 +71,7 @@ public class TupleSpace {
      * @param template
      * @return
      */
-    public ArrayList<Tuple> rdAll(HashMap<String,String> template){
+    public ArrayList<Tuple> inAll(HashMap<String, String> template){
         ArrayList<Tuple> matches = new ArrayList<Tuple>();
         synchronized (this){
             for(Tuple t : this.allTuples){

@@ -2,12 +2,13 @@ package agent;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import tuple.Tuple;
 import tuple.TupleSpace;
 
-public class Customer implements Runnable, ActionListener{
+public class Customer extends Agent implements Runnable, ActionListener{
 
 	private String requierements = "";
 	private String cost = "";
@@ -47,5 +48,10 @@ public class Customer implements Runnable, ActionListener{
     @Override
     public void run() {
         this.view = new DialogueCustomer(this);
+    }
+
+    @Override
+    void tupleFound(ArrayList<Tuple> tuples) {
+
     }
 }

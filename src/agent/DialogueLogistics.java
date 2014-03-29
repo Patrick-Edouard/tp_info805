@@ -15,6 +15,7 @@ public class DialogueLogistics extends JDialog{
 
     private Logistics logistics;
     public JButton buttonSend;
+    public JButton buttonSendResponse;
     public JLabel request;
     private JTextArea customerRequest;
     private JList<String> listReponse;
@@ -44,7 +45,7 @@ public class DialogueLogistics extends JDialog{
         request = new JLabel("Customer query : ");
         //Border border = BorderFactory.createLineBorder(Color.BLUE, 5);
         //this.customerRequest.setBorder(border);
-        this.customerRequest.setBounds(120, 50, 300, 300);
+        this.customerRequest.setBounds(120, 50, 300, 150);
         this.customerRequest.setBackground(Color.WHITE);
         this.customerRequest.setEditable(false);
         this.request.setBounds(5, 50, 100, 50);
@@ -66,9 +67,23 @@ public class DialogueLogistics extends JDialog{
 
         listReponse = new JList<String>(responseArray);
 
-        listReponse.setBounds(50,50,550,550);
+        listReponse.setBounds(50,200,550,550);
 
-        this.add(listReponse);
+        JScrollPane scrollPane = new JScrollPane(listReponse);
+        scrollPane.setBounds(100,250,300,100);
+
+        this.add(scrollPane);
+
+        buttonSendResponse = new JButton("Send CDC to customer");
+
+        buttonSendResponse.setBounds(180,400,150,25);
+
+        buttonSendResponse.addActionListener(logistics);
+
+        this.add(buttonSendResponse);
+
+        buttonSend.setBounds(0,0,0,0);
+        buttonSend.setVisible(false);
 
         this.revalidate();
     }
