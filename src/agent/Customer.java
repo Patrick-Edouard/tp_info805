@@ -28,6 +28,7 @@ public class Customer extends Agent implements Runnable, ActionListener{
 		data.put("time",this.time);
 		data.put("quantity",this.quantity);
 		this.tupleSpace.out(new Tuple(data));
+        this.waitResponse();
 	}
 
     private void retriewInfoFromView(){
@@ -53,5 +54,16 @@ public class Customer extends Agent implements Runnable, ActionListener{
     @Override
     void tupleFound(ArrayList<Tuple> tuples) {
 
+    }
+
+    private void waitResponse(){
+
+        Thread tCustomer = new Thread(new supplierReponsesWaiter(this));
+        tCustomer.start();
+
+    }
+
+    public void responseFromWaiter(ArrayList<Tuple> tuples){
+        this.view.displaySupplierChoice(tuples);
     }
 }

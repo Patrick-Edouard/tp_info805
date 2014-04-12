@@ -70,6 +70,11 @@ public class Logistics extends Agent implements ActionListener, Runnable{
         for(Tuple tuple  : reponses){
             tupleSpace.out(tuple);
         }
+
+        Tuple t = new Tuple();
+        t.addField("Synchronize","logisticReponse");
+
+        tupleSpace.out(t);
     }
 
     @Override

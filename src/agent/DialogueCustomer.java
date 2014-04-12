@@ -1,9 +1,11 @@
 package agent;
 
 import agent.Customer;
+import tuple.Tuple;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by patrick-edouard on 3/18/14.
@@ -20,6 +22,7 @@ public class DialogueCustomer extends JDialog{
     JTextArea textTime;
     JLabel quantity;
     JTextArea textQuantity;
+    JComboBox comboBoxSupplierResponses;
 
     public DialogueCustomer(Customer customer){
         super();
@@ -44,7 +47,7 @@ public class DialogueCustomer extends JDialog{
         this.add(textRequierement);
         this.add(requirement);
         
-        textCost = new JTextArea("39,90€/unit");
+        textCost = new JTextArea("39,90ï¿½/unit");
         cost = new JLabel("Cost : ");
         this.textCost.setBounds(100, 105, 300, 50);
         this.cost.setBounds(5, 105, 100, 50);
@@ -69,6 +72,17 @@ public class DialogueCustomer extends JDialog{
         buttonSend.addActionListener(customer);
         this.buttonSend.setBounds(100, 300, 300, 25);
         this.add(buttonSend);
+    }
+
+    public void displaySupplierChoice(ArrayList<Tuple> tuples){
+        System.err.println("J'ai reÃ§u mofo ! \n"+tuples);
+
+        comboBoxSupplierResponses = new JComboBox();
+        comboBoxSupplierResponses.addItem(tuples.toArray());
+        comboBoxSupplierResponses.setBounds(200,200,200,200);
+        this.add(comboBoxSupplierResponses);
+
+        this.revalidate();
     }
 
     public String getRequierement(){
