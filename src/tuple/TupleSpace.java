@@ -26,15 +26,15 @@ public class TupleSpace {
 	public void setAllTuples(ArrayList<Tuple> allTuples) {
 		this.allTuples = allTuples;
 	}
-	
-	/**
-	 * Retourne si un tuple va bien & le retire
-	 * Appel bloquant
-	 * @param template
-	 * @return
-	 */
-	public Tuple in(HashMap<String,String> template){
-		while(true){
+
+    /**
+     * Retourne si un tuple va bien & le retire
+     * Appel bloquant
+     * @param template
+     * @return
+     */
+    public Tuple in(HashMap<String,String> template){
+        while(true){
             synchronized (this){
                 for(Tuple t : this.allTuples){
                     if(t.isTemplate(template)){
@@ -46,7 +46,24 @@ public class TupleSpace {
         }
 
         // bloquant ?
-	}
+    }
+
+    /**
+     * Read bloquant
+     * @param template
+     * @return
+     */
+    public Tuple rdb(HashMap<String, String> template){
+        while(true){
+            synchronized (this){
+                for(Tuple t : this.allTuples){
+                    if(t.isTemplate(template)){
+                        return t;
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Retourne si un tuple va bien
@@ -78,6 +95,9 @@ public class TupleSpace {
                 if(t.isTemplate(template)){
                     matches.add(t);
                 }
+            }
+            for(Tuple t : matches){
+                this.allTuples.remove(t);
             }
             return matches;
         }

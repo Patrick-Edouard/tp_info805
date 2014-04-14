@@ -16,6 +16,7 @@ public class Customer extends Agent implements Runnable, ActionListener{
 	private String quantity = "";
 	private TupleSpace tupleSpace = TupleSpace.getInstance();
     private DialogueCustomer view;
+    private ArrayList<Tuple> supplierOffer;
 	
 	public Customer(){
 
@@ -43,7 +44,25 @@ public class Customer extends Agent implements Runnable, ActionListener{
         if(e.getSource().equals(this.view.buttonSend)){
             this.retriewInfoFromView();
             this.sendToLogistics();
+        }if(e.getSource().equals(this.view.comboBoxSupplierResponses)){
+            this.offerChoose();
         }
+    }
+
+    private void offerChoose(){
+        System.out.println("Offre selectionne : "+this.view.comboBoxSupplierResponses.getSelectedItem());
+        Tuple tSelectionne = new Tuple();
+
+        for(Tuple t : supplierOffer){
+            if(t.toString().equals(this.view.comboBoxSupplierResponses.getSelectedItem())){
+                tSelectionne= t;
+                break;
+            }
+        }
+
+        Tuple tOut = new Tuple();
+        tOut.addField("idSupplier",tSelectionne.getValue("idsupplier"));
+        this.tupleSpace.out(tOut);
     }
 
     @Override
@@ -56,6 +75,11 @@ public class Customer extends Agent implements Runnable, ActionListener{
 
     }
 
+    @Override
+    void singleTupleFound(Tuple tuple) {
+
+    }
+
     private void waitResponse(){
 
         Thread tCustomer = new Thread(new supplierReponsesWaiter(this));
@@ -64,6 +88,13 @@ public class Customer extends Agent implements Runnable, ActionListener{
     }
 
     public void responseFromWaiter(ArrayList<Tuple> tuples){
-        this.view.displaySupplierChoice(tuples);
+        this.supplierOffer = tuples;
+        ArrayList<String> tuplesString = new ArrayList();
+
+        for(int i = 0; i<tuples.size(); ++i){
+            tuplesString.add(tuples.get(i).toString());
+        }
+
+        this.view.displaySupplierChoice(tuplesString);
     }
 }

@@ -57,6 +57,11 @@ public class Logistics extends Agent implements ActionListener, Runnable{
         this.view.displayResponse(tuples);
     }
 
+    @Override
+    void singleTupleFound(Tuple tuple) {
+
+    }
+
     private void broadcastCustomerRequest(){
         //Adapte le tuple
         customerRequest.addField("idrequete",""+NB_REQUEST);
@@ -81,6 +86,7 @@ public class Logistics extends Agent implements ActionListener, Runnable{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource().equals(view.buttonSend)){
             this.broadcastCustomerRequest();
+            this.view.offerSent();
         }else if(e.getSource().equals(view.buttonSendResponse)){
             this.sendResponsesToCustomer();
         }

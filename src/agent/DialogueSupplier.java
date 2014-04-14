@@ -10,7 +10,7 @@ import java.awt.*;
 /**
  * Created by patrick-edouard on 3/19/14.
  */
-public class DialogueSupplier extends JDialog{
+public class DialogueSupplier extends MyJDialog{
 
 
     private Supplier supplier;
@@ -110,4 +110,24 @@ public class DialogueSupplier extends JDialog{
         return textQuantity.getText();
     }
 
+    public void chosenOne(){
+        buttonSend.setVisible(false);
+        requirement.setVisible(false);
+        cost.setVisible(false);
+        textCost.setVisible(false);
+        time.setVisible(false);
+        textTime.setVisible(false);
+        quantity.setVisible(false);
+        textQuantity.setVisible(false);
+
+        textRequierement.setText("Work in progress");
+
+        progressBar = new JProgressBar();
+        progressBar.setBounds(25,25,200,25);
+        this.add(progressBar);
+        this.revalidate();
+
+        Thread t = new Thread(new Progresser(6000, this));
+        t.start();
+    }
 }

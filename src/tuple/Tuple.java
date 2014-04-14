@@ -17,7 +17,11 @@ public class Tuple {
 	
 	public Tuple(){
 		this.template = new HashMap<String, String>();
-	}	
+	}
+
+    public String getValue(String key){
+        return this.template.get(key);
+    }
 
 	public HashMap<String, String> getTemplate() {
 		return template;

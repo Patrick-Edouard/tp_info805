@@ -22,7 +22,7 @@ public class DialogueCustomer extends JDialog{
     JTextArea textTime;
     JLabel quantity;
     JTextArea textQuantity;
-    JComboBox comboBoxSupplierResponses;
+    JComboBox<String> comboBoxSupplierResponses;
 
     public DialogueCustomer(Customer customer){
         super();
@@ -74,13 +74,19 @@ public class DialogueCustomer extends JDialog{
         this.add(buttonSend);
     }
 
-    public void displaySupplierChoice(ArrayList<Tuple> tuples){
-        System.err.println("J'ai reçu mofo ! \n"+tuples);
+    public void displaySupplierChoice(ArrayList<String> tuplesString){
+        /*
+        À positionner correctement
+         */
+        comboBoxSupplierResponses = new JComboBox<String>();
 
-        comboBoxSupplierResponses = new JComboBox();
-        comboBoxSupplierResponses.addItem(tuples.toArray());
+        for(String s : tuplesString){
+            comboBoxSupplierResponses.addItem(s);
+        }
+
         comboBoxSupplierResponses.setBounds(200,200,200,200);
         this.add(comboBoxSupplierResponses);
+        comboBoxSupplierResponses.addActionListener(customer);
 
         this.revalidate();
     }

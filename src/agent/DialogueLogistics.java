@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by patrick-edouard on 3/18/14.
  */
-public class DialogueLogistics extends JDialog{
+public class DialogueLogistics extends MyJDialog{
 
     private Logistics logistics;
     public JButton buttonSend;
@@ -86,5 +86,15 @@ public class DialogueLogistics extends JDialog{
         buttonSend.setVisible(false);
 
         this.revalidate();
+    }
+
+    public void offerSent(){
+        this.buttonSend.setVisible(false);
+        this.progressBar = new JProgressBar();
+        this.progressBar.setBounds(180, 400, 150, 25);
+        this.add(progressBar);
+
+        Thread tProgress = new Thread(new Progresser(5000, this));
+        tProgress.start();
     }
 }
