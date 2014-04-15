@@ -47,7 +47,7 @@ public class DialogueCustomer extends JDialog{
         this.add(textRequierement);
         this.add(requirement);
         
-        textCost = new JTextArea("39,90�/unit");
+        textCost = new JTextArea("39,90 euro/unit");
         cost = new JLabel("Cost : ");
         this.textCost.setBounds(100, 105, 300, 50);
         this.cost.setBounds(5, 105, 100, 50);
@@ -61,7 +61,7 @@ public class DialogueCustomer extends JDialog{
         this.add(textTime);
         this.add(time);
         
-        textQuantity = new JTextArea("One thousand");
+        textQuantity = new JTextArea("1000");
         quantity = new JLabel("Quantity : ");
         this.textQuantity.setBounds(100, 215, 300, 50);
         this.quantity.setBounds(5, 215, 100, 50);
@@ -70,7 +70,7 @@ public class DialogueCustomer extends JDialog{
         
         buttonSend = new JButton("Send to Logistic");
         buttonSend.addActionListener(customer);
-        this.buttonSend.setBounds(100, 300, 300, 25);
+        this.buttonSend.setBounds(100, 400, 300, 25);
         this.add(buttonSend);
     }
 
@@ -84,7 +84,7 @@ public class DialogueCustomer extends JDialog{
             comboBoxSupplierResponses.addItem(s);
         }
 
-        comboBoxSupplierResponses.setBounds(200,200,200,200);
+        comboBoxSupplierResponses.setBounds(100,300,300,50);
         this.add(comboBoxSupplierResponses);
         comboBoxSupplierResponses.addActionListener(customer);
 

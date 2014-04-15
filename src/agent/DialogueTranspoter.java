@@ -9,10 +9,14 @@ public class DialogueTranspoter extends JDialog{
 
     private Transporter transporter;
     private JProgressBar progressBar;
+    JLabel company;
+    JTextArea textCompany;
+    JLabel messageOk;
 
     public DialogueTranspoter(Transporter transporter){
         this.transporter=transporter;
         this.initWindow();
+        this.initComponent();
         this.initProgressBar();
         this.setVisible(true);
         this.progress();
@@ -21,17 +25,35 @@ public class DialogueTranspoter extends JDialog{
     private void progress(){
         for(int i = 0 ; i <= 100; ++i){
             try {
-                Thread.sleep(20);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             this.progressBar.setValue(i);
         }
+        messageOk = new JLabel("The products are transported");
+        this.messageOk.setBounds(100, 400, 100, 50);
+        this.add(messageOk);
+    }
+    
+    private void initComponent(){
+    	company = new JLabel("Company : ");
+        this.company.setBounds(5, 50, 100, 50);
+        this.add(company);
+
+        this.textCompany = new JTextArea("Norbert Dentressangle");
+        this.textCompany.setBounds(150, 50, 300, 50);
+        this.textCompany.setEditable(false);
+        this.add(textCompany);
+        
+        messageOk = new JLabel("The products are transported");
+        this.messageOk.setBounds(175, 350, 200, 50);
+        this.add(messageOk);
     }
 
     private void initProgressBar(){
         this.progressBar = new JProgressBar();
-        this.progressBar.setBounds(50,50,400,25);
+        this.progressBar.setBounds(50,200,400,25);
         this.add(progressBar);
     }
 

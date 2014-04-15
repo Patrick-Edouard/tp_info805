@@ -123,7 +123,7 @@ public class DialogueSupplier extends MyJDialog{
         textRequierement.setText("Work in progress");
 
         progressBar = new JProgressBar();
-        progressBar.setBounds(25,25,200,25);
+        progressBar.setBounds(150,150,200,25);
         this.add(progressBar);
         this.revalidate();
 
